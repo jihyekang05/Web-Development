@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8"%>    
 <%@page import="java.util.*" %>
-<%@page import="com.kitri.myhome2.board.*" %>
+<%@page import="com.kitri.myhome2.grade.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,18 +16,6 @@
 
 </head>
 <body>
-
-<%
-String id=request.getParameter("id");
-if(id == null) id="";
-String cmd=request.getParameter("cmd");
-if(cmd == null) cmd="";
-BoardDto boardDto = (BoardDto)request.getAttribute("boardDto");
-%>
-<form name="myform">
-	<input type="hidden" name="cmd" value="<%=cmd %>"/>
-	<input type="hidden" name="id" value="<%=id%>"/>
-	
     <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
         <div class="container-fluid">
           <ul class="navbar-nav">
@@ -63,8 +51,7 @@ BoardDto boardDto = (BoardDto)request.getAttribute("boardDto");
                 <td>
                     <div class="mb-3" style="margin-top:13px;">
                         <input type="text" class="form-control" id="title" name="title" 
-                        placeholder="제목을 입력하세요" 
-                        value="<%=boardDto.getTitle() %>" >
+                        placeholder="제목을 입력하세요" >
                     </div>
                 </td>
               </tr>       
@@ -73,8 +60,7 @@ BoardDto boardDto = (BoardDto)request.getAttribute("boardDto");
                 <td>
                     <div class="mb-3" style="margin-top:13px;">
                         <input type="text" class="form-control" id="writer" name="writer" 
-                        placeholder="이름을 입력하세요" 
-                        value="<%=boardDto.getWriter() %>" >
+                        placeholder="이름을 입력하세요" >
                     </div>
                 </td>
               </tr>      
@@ -82,7 +68,7 @@ BoardDto boardDto = (BoardDto)request.getAttribute("boardDto");
                 <td>내용</td>
                 <td>
                     <div class="mb-3" style="margin-top:13px;">
-                      <textarea class="form-control" rows="5" id="contents" name="contents"><%=boardDto.getContents() %></textarea>
+                      <textarea class="form-control" rows="5" id="contents" name="contents"></textarea>
                     </div>
                 </td>
               </tr>          
@@ -90,42 +76,13 @@ BoardDto boardDto = (BoardDto)request.getAttribute("boardDto");
           </table>
        
           <div class="container mt-3" style="text-align:right;">
-            
-            <button type="button" class="btn btn-secondary" onclick="goSave()">저장</button>
-            <button type="button" class="btn btn-secondary" onclick="goList()">목록</button>
-           
+            <a href="#" class="btn btn-secondary">Link Button</a>
+            <button type="button" class="btn btn-secondary">Button</button>
+            <input type="button" class="btn btn-secondary" value="Input Button">
+            <input type="submit" class="btn btn-secondary" value="Submit Button">
+            <input type="reset" class="btn btn-secondary" value="Reset Button">
           </div>
           
     </div>
-    </form>
 </body>
-
-		
-   
-
-
-</form>
-
-
 </html>
-
-<script>
-
-function goSave()
-{
-	var frm = document.myform;
-	frm.method="post";
-	frm.action="/myhome2/board.do";
-	frm.cmd.value="save";
-	frm.submit();
-}
-
-function goList()
-{
-	var frm = document.myform;
-	frm.action="/myhome2/board.do";
-	frm.cmd.value="list";
-	frm.submit();
-}
-
-</script>

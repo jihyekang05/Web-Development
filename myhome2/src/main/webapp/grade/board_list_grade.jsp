@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>    
 <%@page import="java.util.*" %>
-<%@page import="com.kitri.myhome2.board.*" %>
-<!DOCTYPE html>
+<%@page import="com.kitri.myhome2.grade.*" %>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,10 +16,6 @@
 
 </head>
 <body>
-<form name="myform">
-	<input type="hidden" name="cmd" />
-
-
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="javascript:void(0)">Logo</a>
@@ -72,31 +68,31 @@
             <button class="btn btn-secondary" type="submit">Go</button>
           </div>
 
+        
         <table class="table table-hover ">
             <thead class="table-secondary">
             <tr>
              <th>번호</th>
-             <th>제목</th>
-             <th>작성자</th>
-             <th>작성일</th>
+             <th>이름</th>
+             <th>총합</th>
+             <th>평균</th>
            </tr>
            </thead>
            
 <%
-List<BoardDto> list = (List<BoardDto>) request.getAttribute("list");
+List<gradeDto> list = (List<gradeDto>) request.getAttribute("list");
 for(int i=0; i<list.size();i++){
-	BoardDto temp = list.get(i);
+	gradeDto temp = list.get(i);
 %>
 		<tr>
 			<td><%=temp.getId()%></td>
-			<td><a href="/myhome2/board.do?cmd=view&id=<%=temp.getId()%>"><%=temp.getTitle()%></td>
-			<td><%=temp.getWriter()%></td>
-			<td><%=temp.getWdate()%></td>
+			<td><a href="/myhome2/grade.do?cmd=view&id=<%=temp.getId()%>"><%=temp.getName()%></td>
+			<td><%=temp.getSum()%></td>
+			<td><%=temp.getAvg()%></td>
          </tr>  
          
 <%} %> 
-	
-            
+           
           </table>
 
  
@@ -113,24 +109,14 @@ for(int i=0; i<list.size();i++){
           </ul>
        
           <div class="container mt-3" style="text-align:right;">
-            <a href="#" class="btn btn-secondary" onclick="goWrite()">글쓰기</a>
-            
+            <a href="#" class="btn btn-secondary">Link Button</a>
+            <button type="button" class="btn btn-secondary">Button</button>
+            <input type="button" class="btn btn-secondary" value="Input Button">
+            <input type="submit" class="btn btn-secondary" value="Submit Button">
+            <input type="reset" class="btn btn-secondary" value="Reset Button">
           </div>
           
     </div>
-    
-    </form>
 </body>
 </html>
 
-<script>
-
-function goWrite()
-{
-	var frm = document.myform;
-	frm.action="/myhome2/board.do";
-	frm.cmd.value="write";
-	frm.submit();
-}
-
-</script>
