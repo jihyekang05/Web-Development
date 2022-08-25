@@ -1,0 +1,32 @@
+/* #hover-btn:hover {
+    display: block;
+} */
+
+/* #h:hover > #hover-btn > #edit-button {
+    display: block; 
+} */
+
+.hover-btn {
+    display: none;
+}
+
+/* .list-group:hover > .list-group-item > #hover-btn{    
+    
+    display: flex;
+} */
+
+.list-group:hover > .hover-btn{    
+    
+    display: flex;
+}
+
+.modal-container{
+    display:none;
+    position: absolute;
+    top: 10%;
+    left:50%;
+    z-index: 10;
+    overflow: auto;
+}
+
+
